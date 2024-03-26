@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import Navbar from './Components/Navbar';
+import SearchBar from './Components/SearchBar';
+import TaskForm from './Components/TaskForm';
+import TaskList from './Components/TaskList';
+import { useState } from 'react';
 
 function App() {
+  const [showTaskForm, setShowTaskForm] = useState(false);
+
+  const toggleTaskForm = () => {
+    setShowTaskForm(!showTaskForm);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {showTaskForm && <TaskForm toggleTaskForm={toggleTaskForm} />}
+    <Navbar/>
+    <SearchBar toggleTaskForm={toggleTaskForm} />
+    <TaskList/>
+    </>
   );
 }
 
