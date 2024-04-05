@@ -1,41 +1,13 @@
-import React, { useState } from "react";
-import TaskList from "./TaskList";
+import React from "react";
 
-export default function TaskForm({ toggleTaskForm }) {
-  const[arr,setArr]=useState([]);
-  const[taskObj,setTaskObj]=useState({
-    name:"",
-    description:"",
-    date:"",
-    priority:""
-  })
-  function submitTask(){
-    setArr(prevArr => [...prevArr, taskObj]);
-  }
-  <TaskList taskInfo={arr}/> 
+export default function TaskForm(props) {
+  
   return (
     <div>
-      <div>{taskObj.name}</div>
-      <form
-        style={{
-          marginLeft: "38%",
-          border: "1px solid silver",
-          padding: "2%",
-          borderRadius: 8,
-          width: "30vw",
-          boxShadow: "0px 0px 10px 10px silver",
-          zIndex: "300",
-          position: "fixed",
-          backgroundColor: "white"
-        }}
-      >
+      <form>
         <button
-          style={{
-            color: "red",
-            background: "none",
-            border: "none"
-          }}
-          onClick={toggleTaskForm}
+          id="form-cancel-button"
+          onClick={props.toggleTaskForm}
         >
           X
         </button>
@@ -49,7 +21,7 @@ export default function TaskForm({ toggleTaskForm }) {
             type="text"
             placeholder="eg.- Design a Website"
             style={{ width: "70%" }}
-            onChange={(event) => (setTaskObj({...taskObj, name: event.target.value}))}
+            onChange={(event) => (props.setTaskObj({...props.taskObj, name: event.target.value}))}
           />
 
           <p style={{ fontWeight: "bold" }}>Description</p>
@@ -58,7 +30,7 @@ export default function TaskForm({ toggleTaskForm }) {
             type="text"
             placeholder="Description here"
             style={{ height: "30vh", width: "70%" }}
-            onChange={(event) => (setTaskObj({...taskObj, description:event.target.value}))}
+            onChange={(event) => (props.setTaskObj({...props.taskObj, description:event.target.value}))}
           />
 
           <p style={{ fontWeight: "bold" }}>Set Deadline</p>
@@ -66,7 +38,7 @@ export default function TaskForm({ toggleTaskForm }) {
             id="taskDateInput"
             type="date"
             style={{ width: "70%", fontWeight: "bolder" }}
-            onChange={(event) => (setTaskObj({taskObj,date: event.target.value}))}
+            onChange={(event) => (props.setTaskObj({...props.taskObj,date: event.target.value}))}
           />
 
           <p style={{ fontWeight: "bold" }}>Set Priority</p>
@@ -74,36 +46,29 @@ export default function TaskForm({ toggleTaskForm }) {
             style={{ display: "flex", justifyContent: "center", gap: "7px" }}
           >
             <input id="radioButtonLow" type="radio" name="Priority" 
-             onChange={() => setTaskObj({...taskObj,priority: "low"})}
-             checked={taskObj.priority === "low"}
+             onChange={() => props.setTaskObj({...props.taskObj,priority: "low"})}
+             checked={props.taskObj.priority === "low"}
             />
             low
             <input id="radioButtonMid" type="radio" name="Priority" 
-             onChange={() => setTaskObj({...taskObj,priority: "medium"})}
-             checked={taskObj.priority === "medium"}
+             onChange={() => props.setTaskObj({...props.taskObj,priority: "medium"})}
+             checked={props.taskObj.priority === "medium"}
             />
             medium
             <input id="radioButtonHigh" type="radio" name="Priority" 
-             onChange={() => setTaskObj({...taskObj,priority: "high"})}
-             checked={taskObj.priority === "high"}
+             onChange={() => props.setTaskObj({...props.taskObj,priority: "high"})}
+             checked={props.taskObj.priority === "high"}
             />
             high
           </label>
 
           <div>
             <button
-              style={{
-                height: "5vh",
-                width: "40%",
-                backgroundColor: "rgb(38, 38, 235)",
-                color: "white",
-                marginTop: "3%",
-                border: "none"
-              }}
+              id="add-task-button"
               onClick={(event) => {
                 event.preventDefault(); 
-                submitTask(); 
-                toggleTaskForm();
+                props.submitTask(); 
+                props.toggleTaskForm();
             }}
             >
               + Add Task
