@@ -1,24 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 export default function EditTaskForm(props) {
-  let cname=props.taskObj.name,cdescription=props.taskObj.description,
-  cdate=props.taskObj.date,cpriority=props.taskObj.priority;
-  const copyObj={
-    name:cname,
-    description:cdescription,
-    date:cdate,
-    priority:cpriority
-  }
+  const [copyObj, setCopyObj] = useState(JSON.parse(JSON.stringify(props.taskObj)));
+
   return (
     <div>
     <form>
       <button
         id="form-cancel-button"
         onClick={props.toggleEditTaskForm}
+        style={{backgroundColor:"red",color:"white",fontWeight:"bolder",border:"none"}}
       >
         X
       </button>
-
       <div style={{ marginLeft: "3%", textAlign: "center" }}>
         <h2>Update Task</h2>
 
@@ -33,7 +27,7 @@ export default function EditTaskForm(props) {
         />
 
         <p style={{ fontWeight: "bold" }}>Description</p>
-        <input
+        <textarea
           id="taskDescriptionInput"
           type="text"
           placeholder="Description here"
@@ -76,8 +70,9 @@ export default function EditTaskForm(props) {
             id="add-task-button"
             onClick={(event) => {
               event.preventDefault(); 
-              props.searchAndUpdateFirstArray(copyObj); 
-              props.changeCopy(copyObj);
+              if(props.whichArrayToUpdate==="first array") props.searchAndUpdateFirstArray(copyObj); 
+              else if(props.whichArrayToUpdate==="second array") props.searchAndUpdateSecondArray(copyObj);
+              else if(props.whichArrayToUpdate==="third array") props.searchAndUpdateThirdArray(copyObj);
               props.toggleEditTaskForm();
           }}
           >

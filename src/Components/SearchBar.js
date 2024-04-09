@@ -1,36 +1,28 @@
-import React,{useState} from "react";
+import React from "react";
 
 export default function SearchBar({toggleTaskForm}) {
  
   return (
     <>
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between" , marginLeft:"10%", marginRight:"10%", marginTop:"4%"}}>
+      <div 
+       id="search-and-add"
+       style={{ display: "flex", justifyContent: "space-between" , marginLeft:"10%", marginRight:"10%", marginTop:"1%"}}>
         <div>
           <input
+            id="search"
             type="text"
-            placeholder="search for tasks"
+            placeholder="  &#x1F50D;  search for tasks"
             style={{
-              height: "6vh",
-              width: "32vw",
-              backgroundColor: "lightgrey",
-              border: "none",
-              borderRadius: 5,
+              
             }}
           />
         </div>
         <button
-          style={{
-            backgroundColor: "blue",
-            color: "white",
-            height: "8vh",
-            width: "18vw",
-            border: "none",
-            borderRadius: 5,
-          }}
+          id="add-new-task-button"
           onClick={toggleTaskForm}
         >
-          Add New Task
+          <i class="fa fa-solid fa-plus fa-0.5x"></i> Add New Task
         </button>
       </div>
     </div>

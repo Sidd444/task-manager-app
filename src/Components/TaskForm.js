@@ -8,8 +8,9 @@ export default function TaskForm(props) {
         <button
           id="form-cancel-button"
           onClick={props.toggleTaskForm}
+          style={{backgroundColor:"red",color:"white",fontWeight:"bolder",border:"none"}}
         >
-          X
+        &#x2715;
         </button>
 
         <div style={{ marginLeft: "3%", textAlign: "center" }}>
@@ -25,7 +26,7 @@ export default function TaskForm(props) {
           />
 
           <p style={{ fontWeight: "bold" }}>Description</p>
-          <input
+          <textarea
             id="taskDescriptionInput"
             type="text"
             placeholder="Description here"
