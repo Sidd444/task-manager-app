@@ -1,3 +1,7 @@
+# The Project has been Deployed successfully on netlify
+
+Netlify Deployed link: [Task Manger Application](https://661563cfb6f88c117192f3e7--heartfelt-fudge-2084be.netlify.app/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
